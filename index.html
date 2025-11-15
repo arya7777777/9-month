@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy 9 Months Together!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg,#500d35 0,#200048 100%);
+      color: #fff;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .stars {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 1;
+    }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      width: 2px; height: 2px;
+      animation: twinkle 2s infinite alternate;
+    }
+    @keyframes twinkle { to { opacity: 0.3; } }
+    .moon {
+      position: absolute;
+      top: 40px;
+      right: 70px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle at 35% 35%, #fbffd4 60%, #e0e0e0 100%);
+      border-radius: 50%;
+      box-shadow: 0 0 40px 15px #eaeede99, 0 0 200px 50px #ffefe1cc;
+      z-index: 2;
+    }
+    .moon::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 10px; top: 15px;
+      width: 30px; height: 30px;
+      background: #f1fad4;
+      opacity: 0.4;
+      border-radius: 50%;
+      box-shadow: 40px 30px 0 2px #fff6e7;
+    }
+    .main-container {
+      max-width: 700px;
+      margin: 170px auto 50px auto;
+      background: rgba(40, 6, 38, 0.92);
+      border-radius: 20px;
+      box-shadow: 0 2px 28px 7px #7b33d779;
+      position: relative;
+      z-index: 3;
+      padding: 30px 25px 20px 25px;
+    }
+    h1, .header {
+      text-align: center;
+      color: #ffe4fa;
+      font-size:2.2em;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      text-shadow: 1px 2px 8px #b36ccaba;
+      margin-bottom: 7px;
+    }
+    .love {
+      font-size: 1.25em;
+      text-align: center;
+      margin-bottom: 7px;
+      color: #ffb9ff;
+      text-shadow: 0 1px 8px #c360c77e;
+    }
+    .timer-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 25px;
+      margin-top: 10px;
+    }
+    .timer-block {
+      background: rgba(70,30,90,0.7);
+      border-radius: 16px;
+      padding: 10px 14px 6px 14px;
+      font-size: 1.17em;
+      min-width: 66px;
+      text-align: center;
+      box-shadow: 0 1px 6px #a678cb4a;
+    }
+    .timer-label { font-size: 0.97em; font-weight: 400; }
+    .cartoons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin: 25px 0 12px 0;
+    }
+    .cartoon-img {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px #e17ef941;
+      width: 85px; height: 88px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      padding: 6px;
+    }
+    .cartoon-img img { width: 100%; height: 100%; object-fit: contain; }
+    .decor-btn {
+      display: block;
+      margin: 22px auto 10px auto;
+      background: #ff6ccc;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.14em;
+      padding: 14px 32px;
+      border: none;
+      border-radius: 14px;
+      box-shadow: 0 1px 10px #ecb5ed70;
+      cursor: pointer;
+      transition: background 0.16s;
+      z-index: 11;
+      position: relative;
+    }
+    .decor-btn:active { background: #f035b9;}
+    .emojis {
+      font-size: 1.5em; text-align: center; margin: 12px 0 8px 0;
+      animation: popem 1.5s infinite alternate;
+    }
+    @keyframes popem { to { transform: scale(1.085); } }
+    .msg {
+      font-size: 1.12em;
+      line-height: 1.67;
+      color: #fff;
+      padding: 4px 0 0 0;
+      letter-spacing: 0.22px;
+      white-space: pre-line;
+    }
+    .names {
+      margin-top: 17px;
+      color: #a8fce2;
+      text-align: right;
+      font-weight: bold;
+      font-size: 1.02em;
+    }
+    .footer {
+      text-align: center;
+      font-size: 1em;
+      color: #ffc7ea;
+      margin-top: 13px;
+      opacity: 0.84;
+      letter-spacing: 2px;
+    }
+    .hearts {
+      pointer-events: none;
+      position: fixed;
+      left: 0; right: 0; bottom: 0; top: 0;
+      z-index: 6;
+      overflow: visible;
+    }
+    .heart {
+      position: absolute;
+      font-size: 1.5em;
+      color: #ff73b5;
+      animation: floatHearts 4s linear infinite;
+      opacity: 0.75;
+      filter: blur(0.2px);
+    }
+    @keyframes floatHearts {
+      0% { transform: translateY(0) scale(1);}
+      90% { opacity:0.9;}
+      100% { transform: translateY(-100vh) scale(1.18); opacity: 0;}
+    }
+    /* Balloons/flowers animation */
+    .decors { pointer-events: none; position: fixed; left: 0; right:0; bottom:0; top:0; z-index:9; }
+    .decor-obj {
+      position: absolute; font-size: 2em; opacity:0.96;
+      transition: transform 0.22s;
+      animation: floatDecor 3.8s linear forwards;
+    }
+    @keyframes floatDecor {
+      0% { transform:translateY(80vh) scale(0.7);}
+      100% { transform:translateY(-5vh) scale(1.08); opacity:0.2;}
+    }
+    .cake-holder {
+      display: none;
+      justify-content: center;
+      margin: 22px 0 3px 0;
+      min-height: 130px;
+    }
+    .cake-img {
+      width: 150px;
+      height: 140px;
+      background: #fff5;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      font-size:1.6em;
+      color:#9955aa;
+      border: 2px dashed #eee6fedc;
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="moon"></div>
+  <div class="hearts"></div>
+  <div class="decors"></div>
+  <div class="main-container">
+    <div class="header">Happy 9 Months Together! 🎉</div>
+    <div class="love">From 14 March 2025, 4:38 PM</div>
+
+    <div class="timer-row">
+      <div class="timer-block">
+        <div id="days">0</div>
+        <div class="timer-label">days</div>
+      </div>
+      <div class="timer-block">
+        <div id="hours">0</div>
+        <div class="timer-label">hours</div>
+      </div>
+      <div class="timer-block">
+        <div id="minutes">0</div>
+        <div class="timer-label">minutes</div>
+      </div>
+    </div>
+
+    <div class="cartoons">
+      <div class="cartoon-img"><img src="cartoon1.png" alt="cartoon1"></div>
+      <div class="cartoon-img"><img src="cartoon2.png" alt="cartoon2"></div>
+      <div class="cartoon-img"><img src="cartoon3.png" alt="cartoon3"></div>
+    </div>
+
+    <button id="decorBtn" class="decor-btn">Let's Decorate</button>
+
+    <div class="cake-holder" id="cakeHolder">
+      <div class="cake-img" id="cakeImg">
+        <!-- Placeholder: add GitHub cake image URL here -->
+        <span>[Cake Image Here]</span>
+      </div>
+    </div>
+
+    <div class="emojis">❤️🌷🫀💓💋</div>
+    <div class="msg">
+jaaanaaaa 🥺🥺🥺🥺🥺
+
+14th Nov ko Hame 9 months hogye,
+bohot achaa bohot khubsurat bohot haard bhi raha ye Safar apna.  , socha nhi tha itna aage aayenge and inshallah. har waqt puri zindagi aur akhirat me bhi saaath hi rhenge.
+
+Socha tha is month wali anniversary ko bohot acha Banaunga But unfortunately meri carelessness ki WJH se m bhool hi gya infact maine socha tha ki m 2-3 din pehle hi sab prepare kr lunga because agr m busy hua Marriage me to , but still I forgot,
+Uske liye mujhe maaf Krna.
+
+muje karna bohot kuch tha , but bukhar hi itna hogya , aaj bhi ki kuch kr nhi pa rha hu , Jaaaana. Sab chize Apart   , In kuch palo me ham donu aur bhi close aagye ,
+Ham dono Rooh ke Saathi h ,  Aap Mera Sab kuch Ho Sari duniya.
+Jaana Aapke saath bithaya har pal khubsoorat h har pal Khushiyon se bhra h ,
+Aksar ajkal apse ladne lga hu ap ko preshan krne lgaa hu,
+Par m koshish krunga har din apna sabse best dene ka sabse best Banne ka apke liye mujhe bas aapko khushiya deni h jaaanaaa
+
+Nannu  , my love , my world , my universe, My Moon, My cutuuuuuu, My soul ,   My Heart , My breath, My Wifeyyy, My Sweetheart, My Sweetie Pie,   My Queen , My princess, My Jigarr , mi jigguu my panda, my Bhaaaluuuu , My hapiness, I owe you everything aapne bohot kuch kiya h mere liye itna kuch kiyaa.  apko idk mai kaise prove kru. mujhe kitni khushi hui , kitna Pyara waqt tha kitna  Dub Dub huaa mujhe.  jab maine aapka gift open Kiya ,   Meri saansien Itni tez hogyi thi ,
+Thank you so much jaana ye meri zindagi ka pehla sabse khubsurat gift tha Jaana aapka har ek letter maine 10-10 baat pdha ek ek word.  , muje bohot acha lga, bohot khushi hui muje aise lgaa ki aap hi aaye ho ,, apko wo khushboo, us t shirt me usee smell krte hi ek warm hug jaise feel hota , Hai jaaaana.
+Nannu A very Very Happy 9 months Together, Allah kare 9 months 9 saal fir 90 saal fir 900 saal fir 90000 saal aur aaage bhi Ham saaath the khush rheee.
+Thank you so much for everything my everything
+    </div>
+    <div class="names">— Nannu 💖</div>
+    <div class="footer">
+      14th November • 9 Months of Togetherness • With Love, Forever &#9829;
+    </div>
+  </div>
+
+  <script>
+    // Draw random stars
+    const stars = document.querySelector('.stars');
+    for(let i=0;i<48;i++){
+      let s = document.createElement('div');
+      s.className = 'star';
+      s.style.top = Math.random()*100 + "%";
+      s.style.left = Math.random()*100 + "%";
+      s.style.width = s.style.height = (1+Math.random()*2) + 'px';
+      s.style.opacity = (0.4+Math.random()*0.6).toFixed(2);
+      stars.appendChild(s);
+    }
+    // Floating hearts
+    function createHeart() {
+      const hearts = document.querySelector('.hearts');
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '💖';
+      heart.style.left = Math.random()*100 + 'vw';
+      heart.style.bottom = '-30px';
+      heart.style.fontSize = (1 + Math.random()*1.5) + "em";
+      heart.style.opacity = (0.6 + Math.random()*0.29).toFixed(2);
+      hearts.appendChild(heart);
+      setTimeout(()=>heart.remove(),4000);
+    }
+    setInterval(createHeart, 720);
+
+    // Timer logic
+    function updateTimer() {
+      // March 14, 2025 16:38 (4:38 PM)
+      const startTime = new Date(2025, 2, 14, 16, 38, 0).getTime();
+      const now = new Date().getTime();
+      let diff = now - startTime;
+      if(diff<0) diff = 0;
+      let minutes = Math.floor(diff/(1000*60));
+      let hours = Math.floor(minutes/60);
+      let days = Math.floor(hours/24);
+
+      hours = hours % 24;
+      minutes = minutes % 60;
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Decoration
+    const decorBtn = document.getElementById('decorBtn');
+    let stage = 0;
+    decorBtn.addEventListener('click', function(){
+      if(stage === 0){
+        spawnDecors();
+        decorBtn.textContent = "Let's cut cake for 9 month jaana";
+        stage = 1;
+      } else if(stage === 1){
+        document.getElementById('cakeHolder').style.display = "flex";
+        decorBtn.style.display = "none";
+        stage = 2;
+      }
+    });
+
+    function spawnDecors() {
+      const decors = document.querySelector('.decors');
+      // Spawn 8 flowers and 8 balloons
+      const flowers = ['🌸','🌷','🌹','🥀','🌺'];
+      const balloons = ['🎈','🎉','🎊'];
+      for(let i=0;i<9;i++){
+        let decor = document.createElement('div');
+        decor.classList.add('decor-obj');
+        decor.textContent = flowers[Math.floor(Math.random()*flowers.length)];
+        decor.style.left = Math.random()*90 + "vw";
+        decor.style.bottom = '-35px';
+        decor.style.fontSize = (1.5 + Math.random()*1.8) + "em";
+        decors.appendChild(decor);
+        setTimeout(()=>decor.remove(),3700);
+      }
+      for(let i=0;i<7;i++){
+        let decor = document.createElement('div');
+        decor.classList.add('decor-obj');
+        decor.textContent = balloons[Math.floor(Math.random()*balloons.length)];
+        decor.style.left = Math.random()*95 + "vw";
+        decor.style.bottom = '-25px';
+        decor.style.fontSize = (1.6 + Math.random()*2.2) + "em";
+        decors.appendChild(decor);
+        setTimeout(()=>decor.remove(),3680);
+      }
+    }
+  </script>
+</body>
+</html>
